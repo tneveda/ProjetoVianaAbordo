@@ -50,8 +50,10 @@
                             <li class="nav-item @yield('inicio_active')"><a class="nav-link" href="/home">{{__("message.Inicio")}}</a></li>
                             <li class="nav-item @yield('agenda_active')"><a class="nav-link" href="/agenda">{{__("message.Agenda")}}</a></li>
                             <li class="nav-item @yield('comunidade_active')"><a class="nav-link" href="/comunidade">{{__("message.Comunidade")}}</a></li>
+                            <li class="nav-item @yield('mentoria_active')"><a class="nav-link" href="/mentoria">{{__("message.Mentoria")}}</a></li>
                             <li class="nav-item @yield('noticias_active')"><a class="nav-link" href="/noticias">{{__("message.Noticias")}}</a></li>
                             <li class="nav-item @yield('contactos_active')"><a class="nav-link" href="/contactos">{{__("message.Contactos")}}</a></li>
+                            <li class="nav-item @yield('logins_active')"><a class="nav-link" href="/login">{{__("message.Login")}}</a></li>
                             <li class="nav-item " style="padding:0px; margin: 0px;">
                                 <ul style="padding:0px; margin: 0px 0px;">
                                 @if(count(config('app.languages')) > 1)

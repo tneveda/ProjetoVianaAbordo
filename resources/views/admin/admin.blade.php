@@ -57,6 +57,13 @@
 <button class="btn btn-secondary"><a href="/admin/comunidade" class="text-white">Comunidade</a></button>
 <br>
 <br>
+<h3 style="color:#E62B36; font-family: Eczar;">Mentoria</h3>
+<button class="btn btn-secondary"><a href="/admin/mentores" class="text-white">Mentores</a></button>
+<button class="btn btn-secondary"><a href="/admin/mentorandos" class="text-white">Mentorandos</a></button>
+<button class="btn btn-secondary"><a href="/admin/areaInteresse" class="text-white">Área de Interesse</a></button>
+<button class="btn btn-secondary"><a href="/admin/mentorias" class="text-white">Mentorias</a></button>
+<br>
+<br>
 <h3 style="color:#E62B36; font-family: Eczar;">Notícias</h3>
 <button class="btn btn-secondary"><a href="/admin/noticias" class="text-white">Notícias</a></button>
 <button class="btn btn-secondary"><a href="/admin/galeria_noticias" class="text-white">Galeria Notícias</a></button>

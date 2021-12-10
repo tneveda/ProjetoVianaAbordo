@@ -76,6 +76,19 @@
                             <a class="nav-link" href="/admin/pessoa">
                                 Pessoa
                             </a>
+                            <div class="sb-sidenav-menu-heading" style="color:#E62B36; font-family: Eczar;">Mentoria</div>
+                            <a class="nav-link" href="/admin/mentores">
+                                Mentores
+                            </a>
+                            <a class="nav-link" href="/admin/mentorandos">
+                                Mentorandos
+                            </a>
+                            <a class="nav-link" href="/admin/areaInteresse">
+                                Área de Interesse
+                            </a>
+                            <a class="nav-link" href="/admin/mentorias">
+                                Mentorias
+                            </a>
                             <div class="sb-sidenav-menu-heading" style="color:#E62B36; font-family: Eczar;">Notícias</div>
                             <a class="nav-link" href="/admin/noticias">
                                 Notícias
