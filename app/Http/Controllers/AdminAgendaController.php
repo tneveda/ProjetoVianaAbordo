@@ -9,6 +9,15 @@ use App\Models\GaleriaAgenda;
 
 class AdminAgendaController extends Controller
 {
+
+    function __construct()
+    {
+         $this->middleware('permission:agenda-list|post-create|post-edit|post-delete', ['only' => ['agenda']]);
+         $this->middleware('permission:agenda-create', ['only' => ['criar_agenda', 'store']]);
+         $this->middleware('permission:agenda-edit', ['only' => [ 'editar_agenda','atualizar_agenda']]);
+         $this->middleware('permission:agenda-delete', ['only' => ['apagar_agenda']]);
+    }
+
     /*  Função para apresentar a view da Admin - Agenda onde lista todas as agendas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista. 
         A variável $pesquisa guarda o conteúdo que vem do request do formulário da pesquisa. 
@@ -53,6 +62,7 @@ class AdminAgendaController extends Controller
         $agenda -> nome = $request->nome;
         $agenda -> orador = $request->orador;
         $agenda -> descricao = $request->descricao;
+        $agenda -> descricao_en = $request->descricao_en;
         $agenda -> local = $request->local;
         $agenda -> coordenadas = $request->coordenadas;
         $agenda -> data = $request->data;

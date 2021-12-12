@@ -8,6 +8,16 @@ use App\Models\GaleriaNoticia;
 
 class AdminNoticiasController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:noticias-list|post-create|post-edit|post-delete', ['only' => ['noticias']]);
+        $this->middleware('permission:noticias-create', ['only' => ['criar_noticias', 'store']]);
+        $this->middleware('permission:noticias-edit', ['only' => [ 'editar_noticias', 'atualizar_noticias']]);
+        $this->middleware('permission:noticias-delete', ['only' => ['apagar_noticias']]);
+        $this->middleware('permission:galeria_noticias-list|post-create|post-edit|post-delete', ['only' => ['galeria_noticias']]);
+        $this->middleware('permission:galeria_noticias-create', ['only' => ['criar_galeria_noticia', 'store_galeria']]);
+        $this->middleware('permission:galeria_noticias-delete', ['only' => ['apagar_galeria_noticia']]);
+    }
 
     /*  Função para apresentar a view da Admin - Notícias onde lista todas as Notícias com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista. 

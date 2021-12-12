@@ -7,6 +7,13 @@ use App\Models\Pessoa;
 
 class AdminPessoaController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:pessoa-list|post-create|post-edit|post-delete', ['only' => ['pessoa']]);
+        $this->middleware('permission:pessoa-create', ['only' => ['criar_pessoa', 'store']]);
+        $this->middleware('permission:pessoa-edit', ['only' => [ 'editar_pessoa', 'atualizar_pessoa']]);
+        $this->middleware('permission:pessoa-delete', ['only' => ['apagar_pessoa']]);
+    }
 
     /*  Função para apresentar a view da Admin - Pessoa onde lista todas as Pessoas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista. 

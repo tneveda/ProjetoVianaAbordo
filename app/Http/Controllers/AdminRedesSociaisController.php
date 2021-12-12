@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class AdminRedesSociaisController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:redes_sociais-list|post-create|post-edit|post-delete', ['only' => ['redes_sociais']]);
+        $this->middleware('permission:redes_sociais-create', ['only' => ['criar_redes_sociais', 'store']]);
+        $this->middleware('permission:redes_sociais-edit', ['only' => [ 'editar_redes_sociais', 'atualizar_redes_sociais']]);
+        $this->middleware('permission:redes_sociais-delete', ['only' => ['apagar_redes_sociais']]);
+    }
     /*  Função para apresentar a view do Admin - Redes Sociais onde lista todas as agendas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista.  
         A variável $redes_sociais guarda a informação respetiva da tabela "redes_sociais".

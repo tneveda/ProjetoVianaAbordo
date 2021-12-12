@@ -7,6 +7,13 @@ use App\Models\Testemunhos;
 
 class AdminTestemunhosController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:testemunhos-list|post-create|post-edit|post-delete', ['only' => ['testemunhos']]);
+        $this->middleware('permission:testemunhos-create', ['only' => ['criar_testemunhos', 'store']]);
+        $this->middleware('permission:testemunhos-edit', ['only' => [ 'editar_testemunhos', 'atualizar_testemunhos']]);
+        $this->middleware('permission:testemunhos-delete', ['only' => ['apagar_testemunhos']]);
+    }
 
     /*  Função para apresentar a view do Admin - Testemunhos onde lista todas as agendas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista.  

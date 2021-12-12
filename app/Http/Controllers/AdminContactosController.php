@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class AdminContactosController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:contactos-list|post-create|post-edit|post-delete', ['only' => ['contactos']]);
+        $this->middleware('permission:contactos-edit', ['only' => [ 'editar_contactos', 'atualizar_contactos']]);
+        
+    }
     /*  Função para apresentar a view de Admin - Contactos.  
         A variável $contactos guarda a informação respetiva da tabela "contactos".
         Retorna a view 'Admin - Contactos', e passa as variáveis necessárias para serem utilizadas na view.

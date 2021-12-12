@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class AdminBannerController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:banner-list|post-create|post-edit|post-delete', ['only' => ['banner']]);
+        $this->middleware('permission:banner-create', ['only' => ['criar_banner', 'store']]);
+        $this->middleware('permission:banner-edit', ['only' => [ 'editar_banner', 'atualizar_banner']]);
+        $this->middleware('permission:banner-delete', ['only' => ['apagar_banner']]);
+    }
     /*  Função para apresentar a view do Admin - Banner onde lista todas as agendas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista.  
         A variável $banner guarda a informação respetiva da tabela "banner".

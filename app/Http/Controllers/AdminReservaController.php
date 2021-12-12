@@ -8,6 +8,12 @@ use App\Models\Agenda;
 
 class AdminReservaController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:reserva-list|post-create|post-edit|post-delete', ['only' => ['resrva']]);
+        $this->middleware('permission:reserva-edit', ['only' => [ 'editar_reserva', 'atualizar_reserva']]);
+        $this->middleware('permission:reserva-delete', ['only' => ['apagar_reserva']]);
+    }
 
     /*  Função para apresentar a view do Admin - Reserva onde lista todas as agendas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista.  

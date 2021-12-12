@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 class AdminPedidoContactoController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('permission:pedido_contacto-list|post-create|post-edit|post-delete', ['only' => ['pedido_contacto']]);
+        $this->middleware('permission:pedido_contacto-edit', ['only' => [ 'editar_pedido_contacto', 'atualizar_pedido_contacto']]);
+        $this->middleware('permission:pedido_contacto-delete', ['only' => ['apagar_pedido_contacto']]);
+    }
+
     /*  Função para apresentar a view da Admin - Pedido Contacto onde lista todos os Pedido Contactos 
     com o limite de 4 linhas na tabela, se exceder as 4 linhas são criadas páginas para percorrer a lista. 
         A variável $pedido_contacto guarda todos os Pedidos de Contacto.

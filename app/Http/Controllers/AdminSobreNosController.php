@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AdminSobreNosController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:sobre_nos-list|post-create|post-edit|post-delete', ['only' => ['sobre_nos']]);
+        $this->middleware('permission:sobre_nos-create', ['only' => ['criar_sobre_nos', 'store']]);
+        $this->middleware('permission:sobre_nos-edit', ['only' => [ 'editar_sobre_nos', 'atualizar_sobre_nos']]);
+        $this->middleware('permission:sobre_nos-delete', ['only' => ['apagar_sobre_nos']]);
+    }
 
     /*  Função para apresentar a view do Admin - Sobre Nós onde lista todas as agendas com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista.  

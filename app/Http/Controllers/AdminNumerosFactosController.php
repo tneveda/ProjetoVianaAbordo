@@ -7,7 +7,13 @@ use App\Models\Numeros_Factos;
 
 class AdminNumerosFactosController extends Controller
 {
-
+    function __construct()
+    {
+        $this->middleware('permission:numeros_factos-list|post-create|post-edit|post-delete', ['only' => ['numeros_factos']]);
+        $this->middleware('permission:numeros_factos-create', ['only' => ['criar_numeros_factos', 'store']]);
+        $this->middleware('permission:numeros_factos-edit', ['only' => [ 'editar_numeros_factos', 'atualizar_numeros_factos']]);
+        $this->middleware('permission:numeros_factos-delete', ['only' => ['apagar_numeros_factos']]);
+    }
     /*  Função para apresentar a view da Admin - Numeros e Factos onde lista todas os Numeros e Factoss com o limite de 4 linhas na tabela, 
     se exceder as 4 linhas são criadas páginas para percorrer a lista. 
         A variável $numeros_factos guarda todos os Numeros e Factos.
