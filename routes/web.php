@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminPessoaController;
 use App\Http\Controllers\AdminAgendaController;
 use App\Http\Controllers\AdminReservaController;
 use App\Http\Controllers\AdminPedidoContactoController;
+use App\Http\Controllers\AdminInteresseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,7 +153,13 @@ Route::get('/admin/editar_pedido_contacto/{id}', [AdminPedidoContactoController:
 Route::put('/admin/atualizar_pedido_contacto/{id}', [AdminPedidoContactoController::class, 'atualizar_pedido_contacto'])->middleware('auth');
 Route::delete('/admin/pedido_contacto/{id}', [AdminPedidoContactoController::class, 'apagar_pedido_contacto'])->middleware('auth');
 
-
+/*ÁREA DE INTERESSE*/
+Route::get('/admin/area_interesse', [AdminInteresseController::class, 'area_interesse'])->middleware('auth');
+Route::get('/admin/criar_area_interesse', [AdminInteresseController::class, 'criar_area_interesse'])->middleware('auth');
+Route::post('/admin/area_interesse', [AdminInteresseController::class, 'store'])->middleware('auth');
+Route::get('/admin/editar_area_interesse/{id}', [AdminInteresseController::class, 'editar_area_interesse'])->middleware('auth');
+Route::put('/admin/atualizar_area_interesse/{id}', [AdminInteresseController::class, 'atualizar_area_interesse'])->middleware('auth');
+Route::delete('/admin/area_interesse/{id}', [AdminInteresseController::class, 'apagar_area_interesse'])->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
     return view('/admin/admin');

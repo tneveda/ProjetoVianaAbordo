@@ -83,7 +83,7 @@
                             <a class="nav-link" href="/admin/mentorandos">
                                 Mentorandos
                             </a>
-                            <a class="nav-link" href="/admin/areaInteresse">
+                            <a class="nav-link" href="/admin/area_interesse">
                                 Área de Interesse
                             </a>
                             <a class="nav-link" href="/admin/mentorias">
