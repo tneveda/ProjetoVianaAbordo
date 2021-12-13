@@ -18,6 +18,8 @@ use App\Http\Controllers\AdminAgendaController;
 use App\Http\Controllers\AdminReservaController;
 use App\Http\Controllers\AdminPedidoContactoController;
 use App\Http\Controllers\AdminInteresseController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\MentoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,10 @@ Route::post('/reservar_agenda/{id}', [AgendaController::class, 'store']);
 /*COMUNIDADE*/
 Route::get('/comunidade', [ComunidadeController::class, 'index']);
 Route::get('/pessoa/{id}', [ComunidadeController::class, 'ver_pessoa']);
+
+/*MENTORIA*/
+Route::get('/mentoria', [MentoriaController::class, 'index']);
+Route::get('/mentor/{id}', [MentoriaController::class, 'ver_mentor']);
 
 /*NOTICIAS*/
 Route::get('/noticias', [NoticiasController::class, 'index']);
@@ -160,6 +166,15 @@ Route::post('/admin/area_interesse', [AdminInteresseController::class, 'store'])
 Route::get('/admin/editar_area_interesse/{id}', [AdminInteresseController::class, 'editar_area_interesse'])->middleware('auth');
 Route::put('/admin/atualizar_area_interesse/{id}', [AdminInteresseController::class, 'atualizar_area_interesse'])->middleware('auth');
 Route::delete('/admin/area_interesse/{id}', [AdminInteresseController::class, 'apagar_area_interesse'])->middleware('auth');
+
+/*MENTORES*/
+Route::get('/admin/mentores', [UsersController::class, 'mentores'])->middleware('auth');
+Route::get('/admin/criar_mentores', [UsersController::class, 'criar_mentores'])->middleware('auth');
+Route::post('/admin/mentores/', [UsersController::class, 'store'])->middleware('auth');
+Route::get('/admin/editar_mentores/{id}', [UsersController::class, 'editar_mentores'])->middleware('auth');
+Route::put('/admin/atualizar_mentores/{id}', [UsersController::class, 'atualizar_mentores'])->middleware('auth');
+Route::delete('/admin/mentores/{id}', [UsersController::class, 'apagar_mentores'])->middleware('auth');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
     return view('/admin/admin');

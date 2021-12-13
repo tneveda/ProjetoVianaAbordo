@@ -14,6 +14,7 @@ return [
     "DizComunidade" => "What the community says",
     "VideoBannerText" => "Once a month, there is a local community that gives a chance for shared learning and collective intelligence.",
     "ComunidadeSubTitulo" => "Each and every member of our community is a unique input to the growth of our collaborative project. Since 2010 we have been inspired by those who have mastered their professional activity and have something relevant to say about it. ",
+    "MentoriaSubTitulo" => "Soon New Text.",  
     "Nome" => "Name",
     "Email" => "Email",
     "ContactosForm" => "Contact us",

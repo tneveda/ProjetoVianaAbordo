@@ -16,6 +16,7 @@ return [
     "ComunidadeSubTitulo" => "Cada membro da nossa comunidade é um elemento único que contribui para o crescimento do nosso 
                                 projecto colaborativo. Desde 2010 que nos inspiramos por aqueles que dominam a sua área profissional e têm 
                                 algo de relevante a dizer acerca disso.",
+    "MentoriaSubTitulo" => "Brevemente Novo texto.",                          
     "Nome" => "Nome",
     "Email" => "Email",
     "ContactosForm" => "Entra em contacto connosco",

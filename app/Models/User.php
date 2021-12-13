@@ -30,11 +30,11 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'contacto_movel',
-        'ocupacao_profissional',
-        'linkedin',
-        'fotografia',
-        'motivo',
+        'contacto_movel' => "nullable",
+        'ocupacao_profissional' => "nullable",
+        'linkedin' => "nullable",
+        'fotografia' => "nullable",
+        'motivo' => "nullable",
     ];
 
     /**
@@ -59,5 +59,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function interesses(){
+        return $this->hasMany('App\Models\UtilizadorInteresse', 'id_utilizador', 'id');
+    }
 }
