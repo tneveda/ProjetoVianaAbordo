@@ -69,9 +69,13 @@
                     <td style="text-align: justify; vertical-align: middle">{{$mentor->contacto_movel}}</td>
                     <td style="text-align: justify; vertical-align: middle">{{ Str::limit($mentor->ocupacao_profissional,15) }}</td>
                     <td style="text-align: justify; vertical-align: middle">{{ Str::limit($mentor->ocupacao_profissional_ing, 15) }}</td>
-                    @foreach($area_interesse as $area_interesse) 
-                    <td style="text-align: justify; vertical-align: middle">{{$area_interesse->area_interesse}}</td>
+                    <td style="text-align: justify; vertical-align: middle"
+                    >@foreach($mentor -> interesses as $area_interesse) 
+                    @if($area_interesse->ativo == 1)
+                    {{$area_interesse->area_interesse}} <br></br>
+                    @endif
                     @endforeach
+                    </td> 
                     <td style="text-align: center; vertical-align: middle"><img src="/img/mentor/{{$mentor->fotografia}}" style="width: 75px;"></img></td>
                     <td style="text-align: justify; vertical-align: middle"><a href="{{$mentor->linkedin}}">{{ Str::limit($mentor-> linkedin, 15) }}</td>
                     <td style="text-align: center; vertical-align: middle">{{$mentor->created_at}}</td>

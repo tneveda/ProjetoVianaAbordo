@@ -11,7 +11,8 @@ class AreaInteresse extends Model
     protected $table = "area_interesse";
     protected $guarded = [];
 
-    public function Ainteresses(){
-        return $this->hasMany('App\Models\UtilizadorInteresse', 'id_interesse', 'id');
+    public function users(){
+            return $this->belongsToMany(User::class, 'utilizador_interesse', 'id_interesse' , 'id_utilizador');
+        
     }
 }

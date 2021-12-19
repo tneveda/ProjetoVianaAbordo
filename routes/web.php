@@ -20,6 +20,8 @@ use App\Http\Controllers\AdminPedidoContactoController;
 use App\Http\Controllers\AdminInteresseController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MentoriaController;
+use App\Mail\NovoMentor;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------

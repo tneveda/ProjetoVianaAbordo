@@ -60,6 +60,6 @@ class User extends Authenticatable
     ];
 
     public function interesses(){
-        return $this->hasMany('App\Models\UtilizadorInteresse', 'id_utilizador', 'id');
+        return $this->belongsToMany(AreaInteresse::class, 'utilizador_interesse', 'id_utilizador', 'id_interesse');
     }
 }

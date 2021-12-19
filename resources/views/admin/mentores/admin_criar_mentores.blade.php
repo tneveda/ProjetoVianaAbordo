@@ -20,6 +20,8 @@
     }
 </style>
 <h1 style="font-family: Eczar">Criar Mentor</h1>
+
+
     <div class="col-md-6 offset-md-3">
         <form action="/admin/mentores" method="POST" enctype="multipart/form-data" name="Form" onsubmit="return validateForm()">
         @csrf
@@ -47,12 +49,14 @@
            
             <div class="form-group">
             @foreach($interesses as $interesse)
-            
-   <input type="radio" id="{{$interesse->area_interesse}}" name="area_interesse" value = "{{$interesse->id}}"/>
-   <label for="area_interesse">{{$interesse->area_interesse}}</label>
-   <br><br>
-   @endforeach
+        <input type="checkbox" name="area_interesse[]" class="area_interesse" value="{{$interesse->id}}"> {{$interesse->area_interesse}} <br/>
+        @endforeach
            </div>
+            
+  <!-- <input type="radio" id="{{$interesse->area_interesse}}" name="area_interesse" value = "{{$interesse->id}}"/>
+   <label for="area_interesse">{{$interesse->area_interesse}}</label>
+   <br><br>-->
+  
              
             <input type="submit" class="btn btn-primary" value="Criar Mentor">
          

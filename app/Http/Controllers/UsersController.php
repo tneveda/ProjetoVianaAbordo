@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\AreaInteresse;
-use App\Models\UtilizadorInteresse;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NovoMentor;
 use Str;
 
 class UsersController extends Controller
@@ -23,13 +23,10 @@ class UsersController extends Controller
 
 
     public function mentores(){
-        $mentores= User::role('mentor')->get();
-        $area_interesse = DB::table('area_interesse')
-        ->join('utilizador_interesse', 'area_interesse.id', '=', 'utilizador_interesse.id_interesse')
-        ->join('users', 'users.id', '=', 'utilizador_interesse.id_utilizador')
-        ->select('area_interesse')
-        ->get();
-        return view('admin/mentores/admin_mentores', ['mentores' => $mentores, 'area_interesse' => $area_interesse]);
+         
+        $mentores= User::role('mentor')->with('interesses')-> get(); 
+        
+        return view('admin/mentores/admin_mentores', ['mentores' => $mentores]);
     }
 
     public function criar_mentores(){
@@ -55,11 +52,26 @@ class UsersController extends Controller
 
         $mentor->assignRole('mentor');
 
-
         $mentor->save();
-       
         
+        $interesses = $request->get('area_interesse');
+   
+        $mentor->interesses()->attach($interesses);
+        
+        $email = $request->email;
 
+        var_dump($email);
+
+        $data = ([
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => $password,
+            ]);
+
+        Mail::to($email)->send(new NovoMentor($data));
+
+       
         return redirect('/admin/mentores')->with('msg', 'Mentor criado com sucesso!');
     }
 
