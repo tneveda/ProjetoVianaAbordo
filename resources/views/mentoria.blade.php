@@ -15,6 +15,8 @@
 	</div>
 </div>
 
+
+
 <div id="hosting" class="section wb" style="background: rgb(248, 248, 248)">
 	<br>
 	<br>
@@ -22,8 +24,12 @@
 		<div class="section-title text-center">
 			<p class="lead">{{__('message.MentoriaSubTitulo')}}</p>
 		</div><!-- end title -->
+		
 
+		<button class="btn btn-light btn-radius btn-brd grd1 "><a href="/registo" class="text-white">Registo Mentorando</a></button>
+		
 		<div class="text-center">
+			
 			@if($pesquisa)
 			<form action="/mentoria" method="GET" class="d-none d-md-inline-block form-inline" style="width: 50%;">
 				<div class="input-group">
@@ -48,7 +54,6 @@
 			@endif
 		</div>
 		<br>
-
 
 		<div class="row dev-list text-center">
 			@foreach($mentores as $mentor)

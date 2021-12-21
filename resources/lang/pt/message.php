@@ -48,7 +48,8 @@ return [
     "PessoaProfissao" => "profissao",
     "PessoaDescricao" => "descricao",
     "NoticiasTitulo" => "titulo",
-    "NoticiasCorpo" => "corpo"
+    "NoticiasCorpo" => "corpo",
+    "Registo" => "Registo Mentorando"
     
 ]
 ?>

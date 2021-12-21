@@ -47,6 +47,7 @@ return [
     "PessoaDescricao" => "descricao_en",
     "NoticiasTitulo" => "titulo_en",
     "NoticiasCorpo" => "corpo_en",
+    "Registo" => "Mentoring Register"
 
 ]
 ?>

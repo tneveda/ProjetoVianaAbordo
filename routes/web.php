@@ -174,6 +174,15 @@ Route::get('/admin/editar_mentores/{id}', [UsersController::class, 'editar_mento
 Route::put('/admin/atualizar_mentores/{id}', [UsersController::class, 'atualizar_mentores'])->middleware('auth');
 Route::delete('/admin/mentores/{id}', [UsersController::class, 'apagar_mentores'])->middleware('auth');
 
+/*MENTORANDOS*/
+Route::get('/registo', [UsersController::class, 'criar_mentorandos']);
+Route::post('/mentoria', [UsersController::class, 'store_mentorandos']);
+Route::get('/admin/mentorandos', [UsersController::class, 'mentorandos'])->middleware('auth');
+Route::get('/admin/validar_mentorandos', [UsersController::class, 'validar_mentorandos'])->middleware('auth');
+Route::get('/admin/editar_validacao/{id}', [UsersController::class, 'editar_validacao'])->middleware('auth');
+Route::put('/admin/atualizar_validacao/{id}', [UsersController::class, 'atualizar_validacao'])->middleware('auth');
+Route::delete('/admin/validar_mentorandos/{id}', [UsersController::class, 'apagar_mentorando'])->middleware('auth');
+Route::delete('/admin/mentorandos/{id}', [UsersController::class, 'apagar_mentorando'])->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
     return view('/admin/admin');
