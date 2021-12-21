@@ -53,7 +53,7 @@
                             <li class="nav-item @yield('mentoria_active')"><a class="nav-link" href="/mentoria">{{__("message.Mentoria")}}</a></li>
                             <li class="nav-item @yield('noticias_active')"><a class="nav-link" href="/noticias">{{__("message.Noticias")}}</a></li>
                             <li class="nav-item @yield('contactos_active')"><a class="nav-link" href="/contactos">{{__("message.Contactos")}}</a></li>
-                            <li class="nav-item @yield('logins_active')"><a class="nav-link" href="/login">{{__("message.Login")}}</a></li>
+                            <li class="nav-item @yield('login_active')"><a class="nav-link" href="/login">{{__("message.Login")}}</a></li>
                             <li class="nav-item " style="padding:0px; margin: 0px;">
                                 <ul style="padding:0px; margin: 0px 0px;">
                                 @if(count(config('app.languages')) > 1)
@@ -131,7 +131,7 @@
         <div class="container">
             <div class="footer-distributed">
                 <div class="footer-center" style="text-align: center">                   
-                    <p class="footer-company-name">{{__('message.DireitosReservados')}} &copy; 2021 | <a href="#">{{__('message.Condicoes')}}</a> | Design By : João Rodrigues - Tiago Marinho</p>
+                    <p class="footer-company-name">{{__('message.DireitosReservados')}} &copy; 2021 | <a href="#">{{__('message.Condicoes')}}</a> | Design By : João Rodrigues - Tiago Marinho - Tiago Nêveda</p>
                 </div>
 
             </div>

@@ -32,7 +32,14 @@
                 <label for="titulo_en">Nome (EN): *</label>
                 <input type="text" class="form-control" id="area_interesse_ing" name="area_interesse_ing" placeholder="Nome(EN)" value="{{$area_interesse->area_interesse_ing}}">
             </div>
-            <input type="submit" class="btn btn-primary" value="Editar Notícia">
+            <div class="form-group">
+                <label for="ativo">Ativo:</label>
+                <select name="ativo" id="ativo" class="from-group">
+                    <option value="1">Sim</option>
+                    <option value="0" {{$area_interesse->ativo == 0 ? "selected='selected" : ""}}>Não</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Editar Área de Interesse">
             
 </div>
 <br>

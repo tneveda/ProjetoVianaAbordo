@@ -32,6 +32,13 @@
                 <label for="testemunho">Nome (EN):</label>
                 <input type="text" class="form-control" id="nome" name="nome_ing" placeholder="Nome_ing">
             </div>
+            <div class="form-group">
+                <label for="ativo">Ativo:</label>
+                <select name="ativo" id="ativo" class="from-group">
+                    <option value="1">Sim</option>
+                    <option value="0">Não</option>
+                </select>
+            </div>
             
             <input type="submit" class="btn btn-primary" value="Adicionar Área de Interesse">
 </div>

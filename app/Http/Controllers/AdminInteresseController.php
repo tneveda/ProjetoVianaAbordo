@@ -32,6 +32,7 @@ class AdminInteresseController extends Controller
 
         $area_interesse -> area_interesse = $request->nome;
         $area_interesse -> area_interesse_ing = $request->nome_ing;
+        $area_interesse -> ativo = $request->ativo;
        
 
         $area_interesse->save();

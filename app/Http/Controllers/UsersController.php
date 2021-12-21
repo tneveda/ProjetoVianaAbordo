@@ -9,7 +9,11 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NovoMentor;
+use App\Mail\EditarPerfil;
+use DB;
+use App\Quotation;
 use Str;
+use Validator; 
 
 class UsersController extends Controller
 {
@@ -35,6 +39,27 @@ class UsersController extends Controller
     }
 
     public function store(Request $request){
+
+
+        $validator = Validator::make($request->all(), [
+            'name'=>'required|min:3',
+            'area_interesse' => 'required',
+            
+            
+        ],
+    
+    [    'name.required'=>  'Preencha ocampo nome',
+         'area_interesse.required'=>  'Escolha pelo menos uma área de interesse',
+
+    ]);
+        if ($validator->fails()) {
+            return redirect('/admin/criar_mentores')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
+
+         
         $mentor = new User;
         $password= Str::random(8);
         $hashed_password = Hash::make($password);
@@ -60,8 +85,6 @@ class UsersController extends Controller
         
         $email = $request->email;
 
-        var_dump($email);
-
         $data = ([
             'name' => $request->name,
             'email' => $request->email,
@@ -71,9 +94,56 @@ class UsersController extends Controller
 
         Mail::to($email)->send(new NovoMentor($data));
 
+
        
         return redirect('/admin/mentores')->with('msg', 'Mentor criado com sucesso!');
     }
+
+    
+    public function editar_mentores($id){
+        $mentores = User::find($id)->load('interesses');
+        $interesses= AreaInteresse::get();
+        return view('admin/mentores/admin_editar_mentores', ['mentores'=> $mentores, 'interesses' => $interesses]);
+        
+     }
+
+     public function atualizar_mentores(Request $request, $id){
+    
+        $data = $request->all();
+        
+
+        User::findOrFail($request->id)->update($data);
+
+        $mentores = User::find($id)->load('interesses');
+        $interesses = $request->get('area_interesse');  
+        $mentores->interesses()->sync($interesses);
+
+
+        $email = $request->email;
+
+        $data = ([
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            ]);
+
+        Mail::to($email)->send(new EditarPerfil($data));
+
+
+
+
+        return redirect('admin/mentores')->with('msg', 'Mentor atualizado com sucesso!');
+       
+     }
+
+     public function apagar_mentores($id){
+        User::findOrFail($id)->delete();  
+        return redirect('admin/mentores')->with('msg', 'Mentor apagado com sucesso!');
+       
+    }
+
+
+
 
     
 

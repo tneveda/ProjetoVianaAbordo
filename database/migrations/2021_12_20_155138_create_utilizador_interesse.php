@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUtilizadorInteresseTable extends Migration
+class CreateUtilizadorInteresse extends Migration
 {
-    /**
+     /**
      * Run the migrations.
      *
      * @return void
@@ -16,7 +16,7 @@ class CreateUtilizadorInteresseTable extends Migration
         Schema::create('utilizador_interesse', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("id_utilizador");
-            $table->foreign('id_utilizador')->references('id')->on('users');
+            $table->foreign('id_utilizador')->references('id')->on('users')->onDelete('cascade');;
             $table->unsignedBigInteger("id_interesse");
             $table->foreign('id_interesse')->references('id')->on('area_interesse');
             $table->timestamps();

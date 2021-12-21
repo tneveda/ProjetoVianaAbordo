@@ -46,6 +46,7 @@
                 <th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 102px;" aria-sort="descending">#</th>
                     <th>Nome</th>
                     <th>Nome(EN)</th>
+                    <th>Ativo</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th>Ações</th>
@@ -57,6 +58,13 @@
                     <td style="text-align: center; vertical-align: middle">{{$area_interesse->id}}</td>
                     <td style="text-align: justify; vertical-align: middle">{{$area_interesse->area_interesse}}</td>
                     <td style="text-align: justify; vertical-align: middle">{{$area_interesse->area_interesse_ing}}</td>
+                    <td style="text-align: center; vertical-align: middle">
+                        @if($area_interesse->ativo == 1)
+                            <b class="text-center"style="color: green; ">Sim</b>
+                            @else
+                            <b style="color: red; text-aling: center;">Não</b>
+                        @endif
+                    </td>
                     <td style="text-align: center; vertical-align: middle">{{$area_interesse->created_at}}</td>
                     <td style="text-align: center; vertical-align: middle">{{$area_interesse->updated_at}}</td>
                     <td style="text-align: center; vertical-align: middle">

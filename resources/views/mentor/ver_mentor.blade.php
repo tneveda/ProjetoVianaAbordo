@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title', $mentor -> name)
-@section('comunidade_active', 'active')
+@section('mentoria_active', 'active')
 
 @section('content')
 

@@ -64,7 +64,15 @@
 							<h6>{{ Str::limit($mentor-> ocupacao_profissional, 45) }}</h6>
 						</div>
 						<!-- end title -->
-						<p class="text-center" style="padding:15px">{{ Str::limit($mentor-> $mentorAreaInteresse,75) }}</p>
+						<p class="text-center" style="padding:15px">
+						@foreach($mentor -> interesses as $area_interesse) 
+                           @if($area_interesse->ativo == 1)
+					{{ Str::limit( $area_interesse->area_interesse,75) }} 			
+                               @if (!$loop->last),
+							   @endif
+                           @endif
+                        @endforeach
+						</p>
 					</div>
 					<hr>
 					<a href="/mentor/{{$mentor->id}}" class="btn btn-light btn-radius btn-brd grd1"><span>{{__('message.VerMais')}}</span></a>

@@ -30,11 +30,12 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'contacto_movel' => "nullable",
-        'ocupacao_profissional' => "nullable",
-        'linkedin' => "nullable",
-        'fotografia' => "nullable",
-        'motivo' => "nullable",
+        'contacto_movel' ,
+        'ocupacao_profissional' ,
+        'ocupacao_profissional_ing' ,
+        'linkedin' ,
+        'fotografia' ,
+        'motivo',
     ];
 
     /**

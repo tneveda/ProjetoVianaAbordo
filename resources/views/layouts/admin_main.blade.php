@@ -42,6 +42,8 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+
+                       @role('admin')
                             <div class="sb-sidenav-menu-heading" style="color:#E62B36; font-family: Eczar;">Home</div>
                             <a class="nav-link" href="/admin/banner">
                                 Banner
@@ -100,6 +102,7 @@
                             <a class="nav-link" href="/admin/pedido_contacto">
                                 Pedido de Contacto
                             </a>
+                            @endrole
                             <br>
                         </div>
                     </div>
