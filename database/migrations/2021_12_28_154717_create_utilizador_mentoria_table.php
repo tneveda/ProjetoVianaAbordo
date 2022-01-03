@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSessaoMentoriaTable extends Migration
+class CreateUtilizadorMentoriaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateSessaoMentoriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessao_mentoria', function (Blueprint $table) {
+        Schema::create('utilizador_mentoria', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("id_mentorando");
+            $table->foreign('id_mentorando')->references('id')->on('users');
             $table->unsignedBigInteger("id_mentoria");
             $table->foreign('id_mentoria')->references('id')->on('mentoria');
-            $table->integer("numMax_mentorandos");
-            $table->date("data");
-            $table->time("hora");
-            $table->string("imagem");
-            $table->string("link_reuniao");
-            $table->string("estado");
-            $table->string("estado_ing");
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ class CreateSessaoMentoriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sessao_mentoria');
+        Schema::dropIfExists('utilizador_mentoria');
     }
 }

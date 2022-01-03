@@ -40,6 +40,10 @@
 <button class="btn btn-primary"><a href="/admin/validar_mentorandos" class="text-white">Tem Mentorandos por validar</a></button>
 @endif
 
+
+
+
+
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -55,6 +59,7 @@
                     <th>Área de Interesse</th>
                     <th>Fotografia</th>
                     <th>Linkedin</th>
+                    <th>Pedido de Mentoria</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th>Ações</th>
@@ -80,13 +85,18 @@
                     </td> 
                     <td style="text-align: center; vertical-align: middle"><img src="/img/mentorando/{{$mentorando->fotografia}}" style="width: 75px;"></img></td>
                     <td style="text-align: justify; vertical-align: middle"><a href="{{$mentorando->linkedin}}">{{ Str::limit($mentorando-> linkedin, 15) }}</td>
+                    <td style="text-align: justify; vertical-align: middle">
+                    @if($mentorando->pedido_mentoria == 1)
+                    <button class="btn btn-primary"><a href="/admin/alocar_mentor/{{$mentorando->id}}" class="text-white">Aceder</a></button>
+                    @endif
+                    </td>
                     <td style="text-align: center; vertical-align: middle">{{$mentorando->created_at}}</td>
                     <td style="text-align: center; vertical-align: middle">{{$mentorando->updated_at}}</td>
                     <td style="text-align: center; vertical-align: middle">
                         <button class="btn bg-warning text-white" style="width:40px; margin:2px"><a href="/admin/editar_mentorandos/{{$mentorando->id}}" style="color:white"><i class="fa fa-edit"></i></a></button>
                         <form action="/admin/mentorandos/{{$mentorando->id}}" method="POST">
                         @csrf
-                        @method('DELETE')
+        
                         <button onclick="return confirm('Pretende apagar o Mentorando &quot {{$mentorando->name}} &quot ?')" type="submit" class="btn  bg-danger text-white" style="width:40px; margin:2px;"><i class="fa fa-trash"></i></button>
                         </form>
                         

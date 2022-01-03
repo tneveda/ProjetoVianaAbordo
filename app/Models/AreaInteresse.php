@@ -15,4 +15,9 @@ class AreaInteresse extends Model
             return $this->belongsToMany(User::class, 'utilizador_interesse', 'id_interesse' , 'id_utilizador');
         
     }
+
+    public function interesses(){
+        return $this->hasMany(Mentoria::class, 'id_interesse', 'id');
+    }
+
 }

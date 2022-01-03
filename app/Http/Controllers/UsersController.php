@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\AreaInteresse;
+use App\Models\Mentoria;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -31,7 +33,10 @@ class UsersController extends Controller
 
     public function mentores(){
          
-        $mentores= User::role('mentor')->with('interesses')-> get(); 
+        $mentores= User::role('mentor')->with('ment.interesses')->get();
+       
+      
+       
         
         return view('admin/mentores/admin_mentores', ['mentores' => $mentores]);
     }
@@ -46,13 +51,13 @@ class UsersController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name'=>'required|min:3',
-            'area_interesse' => 'required',
+           
             
             
         ],
     
     [    'name.required'=>  'Preencha ocampo nome',
-         'area_interesse.required'=>  'Escolha pelo menos uma área de interesse',
+         
 
     ]);
         if ($validator->fails()) {
@@ -72,19 +77,20 @@ class UsersController extends Controller
         $mentor -> password = $hashed_password;
         $mentor -> email = $request->email;
         $mentor -> ocupacao_profissional = $request->ocupacao_profissional;
-        $mentor -> ocupacao_profissional_ing = $request->ocupacao_profissional_ing;
+        $mentor -> ocupacao_profissional_en = $request->ocupacao_profissional_en;
         $mentor -> fotografia="";
         $mentor -> linkedin="";
         $mentor -> motivo="";
         $mentor -> validacao=1;
+        $mentor -> pedido_mentoria=0;
 
         $mentor->assignRole('mentor');
 
         $mentor->save();
         
-        $interesses = $request->get('area_interesse');
+      /*  $interesses = $request->get('area_interesse');
    
-        $mentor->interesses()->attach($interesses);
+        $mentor->interesses()->attach($interesses);*/
         
         $email = $request->email;
 
@@ -118,8 +124,8 @@ class UsersController extends Controller
         User::findOrFail($request->id)->update($data);
 
         $mentores = User::find($id)->load('interesses');
-        $interesses = $request->get('area_interesse');  
-        $mentores->interesses()->sync($interesses);
+       /* $interesses = $request->get('area_interesse');        
+        $mentoress->interesses()->sync($interesses);*/
 
 
         $email = $request->email;
@@ -148,9 +154,10 @@ class UsersController extends Controller
 
     public function mentorandos(){
          
-        $mentorandos= User::role('mentorando')->with('interesses')-> get(); 
+        $mentorandos= User::role('mentorando')->with('interesses')-> orderBy('pedido_Mentoria','DESC')->get(); 
         $NotValidated = User::where('validacao','=',0)->get();
         $totalNotValidated = $NotValidated ->count();
+   
         
         return view('admin/mentorandos/admin_mentorandos', ['mentorandos' => $mentorandos, 'totalNotValidated'=> $totalNotValidated]);
     }
@@ -191,11 +198,12 @@ class UsersController extends Controller
         $mentorando -> password = $hashed_password;
         $mentorando -> email = $request->email;
         $mentorando -> ocupacao_profissional = $request->ocupacao_profissional;
-        $mentorando -> ocupacao_profissional_ing="";
+        $mentorando -> ocupacao_profissional_en="";
        /* $mentorando -> ocupacao_profissional_ing = $request->ocupacao_profissional_ing;*/
         $mentorando -> linkedin== $request->linkedin;;
         $mentorando -> motivo= $request->motivo;;
         $mentorando -> validacao=0;
+        $mentorando -> pedido_mentoria=1;
 
         $mentorando->assignRole('mentorando');
 
@@ -297,11 +305,81 @@ class UsersController extends Controller
         User::findOrFail($id)->delete(); 
 
         return redirect('admin/mentorandos')->with('msg', 'Mentorando apagado com sucesso!');
+        }
+
+     }
+    
+
+
+    public function alocar_mentor(Request $request, $id){
+
+       $mentorandos= User::findOrFail($id)->load('interesses');
+      /* foreach($mentorandos->interesses as $mentorando){
+          $mentorandoInteresse= $mentorando-> id;
+          echo $mentorandoInteresse;
+       }
+       
+        $mentoriasAll = Mentoria::all();
+        foreach ($mentoriasAll as $mentoria){
+            $mentorias =Mentoria::where('id_interesse','=',$mentorandoInteresse)->get();/
+
+    }*/
+        
+    $pesquisa = request('pesquisa');
+
+    if($pesquisa){
+        
+        $mentorias = Mentoria::where([
+            ['titulo', 'like', '%'.$pesquisa.'%']
+        ])->get();
+    }else{
+        
+    if($request->area_interesse == 0){
+        $mentorias = Mentoria::paginate(4);
+    }
+    else{
+            $mentorias= Mentoria::where('id_interesse', '=',$request->area_interesse)->paginate(4);
+}
     }
 
+  
 
+   $interesses = AreaInteresse::all();
+   $selected_id=[];
+   $selected_id['id_interesse'] = $request->area_interesse;
        
+        
+return view('admin/mentorandos/admin_alocar_mentor', ['mentorias' => $mentorias, 'pesquisa' => $pesquisa, 'mentorandos' => $mentorandos, 'interesses'=>$interesses, 'selected_id' => $selected_id]);
+    }
        
+   
+    public function alocacao($id, $idMent){
+
+        $mentorandos = User::findOrFail($id);
+
+        $mentorias = Mentoria::findOrFail($idMent);
+
+        return view('admin/mentorandos/admin_confirmar_alocacao', ['mentorias' => $mentorias, 'mentorandos' => $mentorandos]);
+
+        /*return redirect('admin/mentorandos')->with('msg', 'Mentorando alocado com sucesso!');*/
+
+    }
+
+    public function confirmar_alocacao(Request $request){
+
+        $user = User::findOrFail($request->mentorando_id);
+      
+        $user -> pedido_mentoria = 0;
+        $user -> update();
+       
+
+        $user->mentorias()->attach($request->mentoria_id);
+
+
+        
+        
+        return redirect('admin/mentorandos')->with('msg', 'Mentorando alocado com sucesso!');
+
     }
 
 

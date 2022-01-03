@@ -45,10 +45,10 @@ $int = $mentores->interesses->pluck('id')->toArray();
                 <input type="text" class="form-control" id="ocupacao_profissional" name="ocupacao_profissional" placeholder="Ocupacao Profissional" value="{{$mentores->ocupacao_profissional}}">
             </div>
             <div class="form-group">
-                <label for="ocupacao_profissional_ing">Ocupação Profissional (Eng): *</label>
-                <input type="text" class="form-control" id="ocupacao_profissional_ing" name="ocupacao_profissional_ing" placeholder="Ocupacao Profissional (Eng)" value="{{$mentores->ocupacao_profissional_ing}}">
+                <label for="ocupacao_profissional_en">Ocupação Profissional (Eng): *</label>
+                <input type="text" class="form-control" id="ocupacao_profissional_en" name="ocupacao_profissional_en" placeholder="Ocupacao Profissional (Eng)" value="{{$mentores->ocupacao_profissional_en}}">
             </div>
-            <p style="font-family: Eczar">Área de Interesse</p>
+           <?php /* <p style="font-family: Eczar">Área de Interesse</p>
            
             <div class="form-group">
            
@@ -58,6 +58,8 @@ $int = $mentores->interesses->pluck('id')->toArray();
             @endforeach
         
            </div>
+           */
+          ?>
             <input type="submit" class="btn btn-primary" value="Editar Mentor">
             
 </div>

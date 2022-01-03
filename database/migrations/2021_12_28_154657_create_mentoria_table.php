@@ -18,9 +18,11 @@ class CreateMentoriaTable extends Migration
             $table->unsignedBigInteger("id_mentor");
             $table->foreign('id_mentor')->references('id')->on('users');
             $table->string("titulo");
-            $table->string("titulo_ing");
+            $table->string("titulo_en");
             $table->text('descricao');
             $table->text('descricao_en');
+            $table->unsignedBigInteger("id_interesse");
+            $table->foreign('id_interesse')->references('id')->on('area_interesse');
             $table->timestamps();
         });
     }

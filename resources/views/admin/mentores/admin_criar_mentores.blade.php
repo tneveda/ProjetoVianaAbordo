@@ -44,16 +44,11 @@
                 <input type="text" class="form-control" id="ocupacao_profissional" name="ocupacao_profissional" placeholder="Ocupacao Profissional">
             </div>
             <div class="form-group">
-                <label for="ocupacao_profissional_ing">Ocupação Profissional (Eng): *</label>
-                <input type="text" class="form-control" id="ocupacao_profissional_ing" name="ocupacao_profissional_ing" placeholder="Ocupacao Profissional (Eng)">
+                <label for="ocupacao_profissional_en">Ocupação Profissional (Eng): *</label>
+                <input type="text" class="form-control" id="ocupacao_profissional_en" name="ocupacao_profissional_en" placeholder="Ocupacao Profissional (Eng)">
             </div>
-            <p style="font-family: Eczar">Área de Interesse</p>
+            
            
-            <div class="form-group">
-            @foreach($interesses as $interesse)
-        <input type="checkbox" name="area_interesse[]" class="area_interesse" value="{{$interesse->id}}"> {{$interesse->area_interesse}} <br/>
-        @endforeach
-           </div>
   
              
             <input type="submit" class="btn btn-primary" value="Criar Mentor">

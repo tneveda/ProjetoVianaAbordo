@@ -103,6 +103,23 @@
                                 Pedido de Contacto
                             </a>
                             @endrole
+                            @role('mentor|mentorando')
+                            <div class="sb-sidenav-menu-heading" style="color:#E62B36; font-family: Eczar;">Área Pessoal</div>
+                            <a class="nav-link" href="/admin/calendario">
+                                Calendário
+                            </a>
+                            <a class="nav-link" href="/admin/mentoria">
+                                Mentoria
+                            </a>
+                            <a class="nav-link" href="/admin/editar_perfil">
+                                Editar Perfil
+                            </a>
+                            <a class="nav-link" href="/admin/historico">
+                                Historico
+                            </a>
+                            @endrole
+                            
+
                             <br>
                         </div>
                     </div>

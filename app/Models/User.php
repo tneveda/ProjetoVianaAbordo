@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use HasApiTokens;
     use HasFactory;
@@ -64,4 +64,14 @@ class User extends Authenticatable
     public function interesses(){
         return $this->belongsToMany(AreaInteresse::class, 'utilizador_interesse', 'id_utilizador', 'id_interesse');
     }
+
+    public function mentorias(){
+        return $this->belongsToMany(Mentoria::class, 'utilizador_mentoria', 'id_mentorando','id_mentoria');
+    }
+
+    public function ment(){
+        return $this->hasMany(Mentoria::class,'id_mentor','id');
+    }
+
+    
 }

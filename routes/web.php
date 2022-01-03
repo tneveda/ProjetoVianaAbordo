@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminPedidoContactoController;
 use App\Http\Controllers\AdminInteresseController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MentoriaController;
+use App\Http\Controllers\AdminMentoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -183,6 +184,20 @@ Route::get('/admin/editar_validacao/{id}', [UsersController::class, 'editar_vali
 Route::put('/admin/atualizar_validacao/{id}', [UsersController::class, 'atualizar_validacao'])->middleware('auth');
 Route::delete('/admin/validar_mentorandos/{id}', [UsersController::class, 'apagar_mentorando'])->middleware('auth');
 Route::delete('/admin/mentorandos/{id}', [UsersController::class, 'apagar_mentorando'])->middleware('auth');
+Route::get('/admin/alocar_mentor/{id}', [UsersController::class, 'alocar_mentor'])->middleware('auth');
+Route::get('/admin/alocacao/{id}/{idMent}', [UsersController::class, 'alocacao'])->middleware('auth');
+Route::put('/admin/confirmar_alocacao/{id}/{idMent}', [UsersController::class, 'confirmar_alocacao'])->middleware('auth');
+
+
+/*MENTORiA*/
+Route::get('/admin/mentorias', [AdminMentoriaController::class, 'mentorias'])->middleware('auth');
+Route::get('/admin/criar_mentorias', [AdminMentoriaController::class, 'criar_mentorias'])->middleware('auth');
+Route::post('/admin/mentorias/', [AdminMentoriaController::class, 'store'])->middleware('auth');
+Route::get('/admin/editar_mentorias/{id}', [AdminMentoriaController::class, 'editar_mentorias'])->middleware('auth');
+Route::put('/admin/atualizar_mentorias/{id}', [AdminMentoriaController::class, 'atualizar_mentorias'])->middleware('auth');
+Route::delete('/admin/mentorias/{id}', [AdminMentoriaController::class, 'apagar_mentorias'])->middleware('auth');
+
+Route::get('getInteresses',[AdminMentoriaController::class, 'getInteresses'])->name('getInteresses');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
     return view('/admin/admin');
